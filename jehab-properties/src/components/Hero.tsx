@@ -1,10 +1,13 @@
-import { Suspense } from 'react';
+import { Suspense, lazy } from 'react';
 import { motion } from 'motion/react';
 import { ArrowRight, BadgeCheck, Bath, BedDouble, MapPin, Ruler } from 'lucide-react';
 
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
-import { HeroScene } from '@/three/HeroScene';
+import { WebGLBoundary, ModelFallback, hasWebGL } from '@/components/WebGLBoundary';
+
+// three.js is heavy — stream it in after first paint so text renders instantly.
+const HeroScene = lazy(() => import('@/three/HeroScene').then((m) => ({ default: m.HeroScene })));
 
 function HeroChips() {
   return (
@@ -115,15 +118,21 @@ export function Hero({ onBook }: { onBook: () => void }) {
 
         {/* 3D maquette */}
         <div className="relative h-[420px] sm:h-[500px] lg:h-[620px]">
-          <Suspense
-            fallback={
-              <div className="grid size-full place-items-center">
-                <div className="size-10 animate-spin rounded-full border-2 border-line border-t-brand" />
-              </div>
-            }
-          >
-            <HeroScene />
-          </Suspense>
+          {hasWebGL() ? (
+            <WebGLBoundary>
+              <Suspense
+                fallback={
+                  <div className="grid size-full place-items-center">
+                    <div className="size-10 animate-spin rounded-full border-2 border-line border-t-brand" />
+                  </div>
+                }
+              >
+                <HeroScene />
+              </Suspense>
+            </WebGLBoundary>
+          ) : (
+            <ModelFallback />
+          )}
           <HeroChips />
         </div>
       </div>

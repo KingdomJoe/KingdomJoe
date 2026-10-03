@@ -1,9 +1,11 @@
-import { Suspense } from 'react';
+import { Suspense, lazy } from 'react';
 import { ArrowRight, Landmark, LineChart, ShieldCheck } from 'lucide-react';
 
 import { Button } from '@/components/ui/button';
 import { Reveal } from '@/components/Reveal';
-import { CityScene } from '@/three/CityScene';
+import { WebGLBoundary, ModelFallback, hasWebGL } from '@/components/WebGLBoundary';
+
+const CityScene = lazy(() => import('@/three/CityScene').then((m) => ({ default: m.CityScene })));
 
 const POINTS = [
   { icon: LineChart, title: 'Yield-led selection', body: 'We underwrite every asset against rental yield and exit liquidity before it reaches you.' },
@@ -16,15 +18,21 @@ export function Showcase({ onBook }: { onBook: () => void }) {
     <section id="commercial" className="scroll-mt-24 overflow-hidden bg-paper-dim py-24">
       <div className="mx-auto grid max-w-7xl items-center gap-12 px-5 md:px-8 lg:grid-cols-2">
         <div className="relative order-2 h-[420px] lg:order-1 lg:h-[560px]">
-          <Suspense
-            fallback={
-              <div className="grid size-full place-items-center">
-                <div className="size-10 animate-spin rounded-full border-2 border-line border-t-brand" />
-              </div>
-            }
-          >
-            <CityScene />
-          </Suspense>
+          {hasWebGL() ? (
+            <WebGLBoundary>
+              <Suspense
+                fallback={
+                  <div className="grid size-full place-items-center">
+                    <div className="size-10 animate-spin rounded-full border-2 border-line border-t-brand" />
+                  </div>
+                }
+              >
+                <CityScene />
+              </Suspense>
+            </WebGLBoundary>
+          ) : (
+            <ModelFallback />
+          )}
         </div>
 
         <div className="order-1 lg:order-2">
