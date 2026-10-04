@@ -1,6 +1,9 @@
 {
   "$schema": "https://openapi.vercel.sh/vercel.json",
   "framework": null,
+  "git": {
+    "deploymentEnabled": true
+  },
   "installCommand": "npm --prefix jehab-properties install --no-audit --no-fund",
   "buildCommand": "npm --prefix jehab-properties run build",
   "outputDirectory": "jehab-properties/dist",

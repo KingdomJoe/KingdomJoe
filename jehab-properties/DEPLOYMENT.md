@@ -17,6 +17,18 @@ subdirectory, so importing the repo requires **no manual configuration**.
 
 From then on, **every push to a branch deploys automatically** — pushes to your
 default branch update the production URL; other branches create preview URLs.
+The repo's `vercel.json` sets `git.deploymentEnabled: true` explicitly, so
+automatic deployments stay on for every branch even if the project dashboard
+setting is ever toggled off.
+
+### Deploy timing
+
+- Push/merge to `main` → production build starts within a few seconds and the
+  live URL is updated in **~30–60 seconds** for a change of this size.
+- Check status: Vercel dashboard → project → **Deployments**, or the deployment
+  check on the commit/PR in GitHub.
+- `index.html` is sent with `no-cache` and hashed bundles live under `/assets`,
+  so a hard refresh is not needed after a deploy.
 
 > If you'd rather not rely on `vercel.json`, the equivalent manual setting is:
 > **Root Directory = `jehab-properties`** in the project settings, leaving the
