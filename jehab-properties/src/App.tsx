@@ -1,5 +1,4 @@
 import { useEffect, useState } from 'react';
-import Lenis from 'lenis';
 import { MotionConfig } from 'motion/react';
 
 import { Navbar } from '@/components/Navbar';
@@ -15,25 +14,12 @@ import { Faq } from '@/components/Faq';
 import { Contact } from '@/components/Contact';
 import { Footer } from '@/components/Footer';
 import { BookingDialog } from '@/components/BookingDialog';
-import { MobileDock } from '@/components/MobileDock';
 
 export default function App() {
   const [bookingOpen, setBookingOpen] = useState(false);
 
-  // Lenis smooth scrolling + anchored navigation
+  // Native hardware-accelerated smooth scrolling for anchor links
   useEffect(() => {
-    const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    if (reduced) return;
-
-    const lenis = new Lenis({ duration: 1.1, easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)) });
-
-    let frame = 0;
-    const raf = (time: number) => {
-      lenis.raf(time);
-      frame = requestAnimationFrame(raf);
-    };
-    frame = requestAnimationFrame(raf);
-
     const onClick = (e: MouseEvent) => {
       const target = (e.target as HTMLElement).closest('a[href^="#"]');
       if (!target) return;
@@ -42,14 +28,13 @@ export default function App() {
       const el = document.querySelector(hash);
       if (!el) return;
       e.preventDefault();
-      lenis.scrollTo(el as HTMLElement, { offset: -72 });
+      const top = el.getBoundingClientRect().top + window.scrollY - 72;
+      window.scrollTo({ top, behavior: 'smooth' });
     };
     document.addEventListener('click', onClick);
 
     return () => {
-      cancelAnimationFrame(frame);
       document.removeEventListener('click', onClick);
-      lenis.destroy();
     };
   }, []);
 
@@ -71,7 +56,6 @@ export default function App() {
         </main>
         <Footer />
         <BookingDialog open={bookingOpen} onOpenChange={setBookingOpen} />
-        <MobileDock onBook={() => setBookingOpen(true)} />
       </div>
     </MotionConfig>
   );

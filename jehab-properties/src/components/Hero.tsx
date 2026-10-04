@@ -85,22 +85,22 @@ export function Hero({ onBook }: { onBook: () => void }) {
           </motion.p>
 
           <motion.div
-            initial={{ opacity: 0, y: 24 }}
+            initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.34, duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
-            className="mt-7 sm:mt-9 flex flex-col sm:flex-row sm:items-center gap-3 sm:gap-4"
+            transition={{ delay: 0.25, duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
+            className="mt-6 sm:mt-9 flex flex-col sm:flex-row sm:items-center gap-3 sm:gap-4"
           >
-            <Button variant="brand" size="lg" onClick={onBook} className="w-full sm:w-auto justify-center active:scale-[0.98] transition-transform shadow-brand">
+            <Button variant="brand" size="lg" onClick={onBook} className="w-full max-w-[280px] sm:w-auto justify-center active:scale-[0.98] transition-transform shadow-brand">
               Book a viewing <ArrowRight className="size-4" />
             </Button>
-            <Button variant="outline" size="lg" asChild className="w-full sm:w-auto justify-center active:scale-[0.98] transition-transform">
+            <Button variant="outline" size="lg" asChild className="w-full max-w-[280px] sm:w-auto justify-center active:scale-[0.98] transition-transform">
               <a href="#listings">Browse listings</a>
             </Button>
             <Button
               variant="ghost"
               size="lg"
               asChild
-              className="w-full sm:w-auto justify-center border border-line sm:border-transparent text-ink-soft hover:text-brand active:scale-[0.98] transition-transform"
+              className="w-full max-w-[280px] sm:w-auto justify-center border border-line sm:border-transparent text-ink-soft hover:text-brand active:scale-[0.98] transition-transform"
             >
               <a href={COMPANY_PHONE_TEL} className="flex items-center gap-2">
                 <Phone className="size-4 text-brand" />

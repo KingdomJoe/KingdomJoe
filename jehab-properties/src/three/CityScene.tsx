@@ -11,8 +11,9 @@ import { Rig } from './Rig';
 export function CityScene() {
   return (
     <Canvas
-      dpr={[1, 2]}
+      dpr={[1, 1.5]}
       gl={{ antialias: true, alpha: true, powerPreference: 'high-performance' }}
+      performance={{ min: 0.5 }}
       camera={{ position: [0, 2.6, 9.5], fov: 30 }}
       className="!bg-transparent"
     >

@@ -17,8 +17,9 @@ import { Rig } from './Rig';
 export function HeroScene() {
   return (
     <Canvas
-      dpr={[1, 2]}
+      dpr={[1, 1.5]}
       gl={{ antialias: true, alpha: true, powerPreference: 'high-performance' }}
+      performance={{ min: 0.5 }}
       camera={{ position: [0, 2.4, 8.5], fov: 32 }}
       className="!bg-transparent"
     >
