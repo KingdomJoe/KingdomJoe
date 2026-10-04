@@ -212,6 +212,25 @@
       0 1px 2px rgb(37 99 235 / 0.16),
       0 12px 28px -10px rgb(37 99 235 / 0.4);
   }
+
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+  .no-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+
+  .touch-pan-y {
+    touch-action: pan-y;
+  }
+
+  .tap-spring {
+    transition: transform 0.18s cubic-bezier(0.2, 0, 0, 1);
+  }
+  .tap-spring:active {
+    transform: scale(0.97);
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {

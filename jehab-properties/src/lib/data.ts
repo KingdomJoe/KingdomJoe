@@ -72,26 +72,38 @@ export const STATS = [
   { value: 320, suffix: 'M+', prefix: 'GH₵', label: 'In closed volume' },
 ];
 
+export const COMPANY_PHONE = '0243372503';
+export const COMPANY_PHONE_DISPLAY = 'Tel: 0243372503';
+export const COMPANY_PHONE_TEL = 'tel:0243372503';
+export const COMPANY_WHATSAPP = 'https://wa.me/233243372503';
+export const COMPANY_EMAIL = 'hello@jehabproperties.com';
+export const COMPANY_ADDRESS = '12 Boundary Rd, East Legon, Accra';
+
 export const SERVICES = [
   {
-    icon: 'key',
-    title: 'Buy a home',
-    body: 'Curated, fully-vetted homes with transparent pricing and a dedicated advisor from first viewing to keys.',
+    icon: 'land',
+    title: 'Sale of Lands',
+    body: 'Prime, demarcated, litigation-free titled plots in verified developing and prime zones with complete documentation.',
   },
   {
-    icon: 'tag',
-    title: 'Sell with confidence',
-    body: 'Pricing strategy, studio-grade photography and a qualified buyer network to sell faster, at full value.',
+    icon: 'house',
+    title: 'Sale of Houses',
+    body: 'Move-in ready modern homes, gated community residences, and bespoke family houses thoroughly inspected for quality.',
   },
   {
-    icon: 'building',
-    title: 'Rent & lettings',
-    body: 'Short and long stays, screened tenants and managed agreements — so renting never feels like a gamble.',
+    icon: 'construction',
+    title: 'Construction',
+    body: 'Full-cycle residential and commercial construction executed to the highest engineering and architectural benchmarks.',
   },
   {
-    icon: 'chart',
-    title: 'Invest & manage',
-    body: 'Yield-focused acquisitions and full property management for local and diaspora investors.',
+    icon: 'architecture',
+    title: 'Architectural Designs',
+    body: 'Custom 2D/3D floor plans, structural engineering blueprints, and contemporary interior concepts tailored to your vision.',
+  },
+  {
+    icon: 'swap',
+    title: 'Swap car for Land',
+    body: 'Flexible equity exchange program allowing you to swap your vetted vehicle directly for verified, titled real estate equity.',
   },
 ] as const;
 

@@ -53,26 +53,40 @@ export function BookingDialog({ open, onOpenChange }: { open: boolean; onOpenCha
             </DialogHeader>
 
             <form onSubmit={handleSubmit} className="grid gap-4">
-              <div className="grid gap-4 sm:grid-cols-2">
-                <Input required placeholder="Full name" name="name" autoComplete="name" />
-                <Input required type="tel" placeholder="Phone / WhatsApp" name="phone" autoComplete="tel" />
+              <div className="grid gap-3.5 sm:grid-cols-2">
+                <Input required placeholder="Full name" name="name" autoComplete="name" className="text-[16px] sm:text-[15px]" />
+                <Input required type="tel" placeholder="Phone / WhatsApp" name="phone" autoComplete="tel" className="text-[16px] sm:text-[15px]" />
               </div>
               <select
                 name="property"
-                className="h-12 w-full rounded-2xl border border-line bg-paper px-4 text-[15px] text-ink focus-visible:border-brand focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-brand/10"
+                className="h-12 w-full rounded-2xl border border-line bg-paper px-4 text-[16px] sm:text-[15px] text-ink focus-visible:border-brand focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-brand/10"
                 defaultValue=""
                 required
               >
-                <option value="" disabled>Choose a property</option>
-                {LISTINGS.map((l) => (
-                  <option key={l.id} value={l.id}>{l.title} — {l.location}</option>
-                ))}
-                <option value="other">Something else / not sure yet</option>
+                <option value="" disabled>Select service or property</option>
+                <optgroup label="Our Services">
+                  <option value="sale-of-lands">Sale of Lands</option>
+                  <option value="sale-of-houses">Sale of Houses</option>
+                  <option value="construction">Construction Services</option>
+                  <option value="architectural-designs">Architectural Designs</option>
+                  <option value="swap-car-land">Swap car for Land</option>
+                </optgroup>
+                <optgroup label="Featured Properties">
+                  {LISTINGS.map((l) => (
+                    <option key={l.id} value={l.id}>{l.title} — {l.location}</option>
+                  ))}
+                </optgroup>
+                <option value="other">General consultation / other</option>
               </select>
-              <Input type="date" name="date" required aria-label="Preferred date" />
-              <Button type="submit" variant="brand" size="lg">Request viewing</Button>
+              <Input type="date" name="date" required aria-label="Preferred date" className="text-[16px] sm:text-[15px]" />
+              <Button type="submit" variant="brand" size="lg" className="w-full active:scale-[0.98] transition-transform shadow-brand">
+                Request viewing or consultation
+              </Button>
               <p className="text-center text-xs text-muted">
-                No spam, no pressure. We only call to arrange your viewing.
+                Need immediate help? Call us directly at{' '}
+                <a href="tel:0243372503" className="font-semibold text-brand hover:underline">
+                  Tel: 0243372503
+                </a>
               </p>
             </form>
           </>

@@ -15,6 +15,7 @@ import { Faq } from '@/components/Faq';
 import { Contact } from '@/components/Contact';
 import { Footer } from '@/components/Footer';
 import { BookingDialog } from '@/components/BookingDialog';
+import { MobileDock } from '@/components/MobileDock';
 
 export default function App() {
   const [bookingOpen, setBookingOpen] = useState(false);
@@ -70,6 +71,7 @@ export default function App() {
         </main>
         <Footer />
         <BookingDialog open={bookingOpen} onOpenChange={setBookingOpen} />
+        <MobileDock onBook={() => setBookingOpen(true)} />
       </div>
     </MotionConfig>
   );
